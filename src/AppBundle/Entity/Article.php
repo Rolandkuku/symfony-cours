@@ -13,10 +13,12 @@ class Article
 {
 
     public function __construct() {
+        $this->tags = new ArrayCollection();
         $this->updatedAt = new \DateTime();
         $this->createdAt = new \DateTime();
         $this->removed = false;
     }
+
 
     /**
      * @var integer
@@ -26,6 +28,52 @@ class Article
     * @ORM\GeneratedValue(strategy="AUTO")
     */
     private $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"})
+     */
+    private $tags;
+
+    /**
+     * Get the value of tags
+     * @return array
+     */
+    public function getTags() {
+        return $this->tags;
+    }
+
+    /**
+     * Set the value of tags
+     * @param array
+     * @return self
+     */
+    public function setTags($tags) {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Removes a tag
+     * @param Appbundle\Entity\Tag
+     * @return self
+     */
+    public function removeTag($tag) {
+        $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * Adds a tag
+     * @param Appbundle\Entity\Tag
+     * @return self
+     */
+    public function addTag($tag) {
+        $this->tags->add($tag);
+
+        return $this;
+    }
 
     /**
      * @var string

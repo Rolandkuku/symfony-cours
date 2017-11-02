@@ -10,10 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
 
+/**
+ * @Route("/article")
+ */
 class ArticleController extends Controller
 {
     /**
-     * @Route("/article/", name="article_index")
+     * @Route("/", name="article_index")
      * @Method({"GET"})
      * @return Response
      */
@@ -30,7 +33,7 @@ class ArticleController extends Controller
 
     /**
      *  Creates an article
-     *  @Route("/article/create", name="article_create")
+     *  @Route("/create", name="article_create")
      *  @Method({"GET", "POST"})
      *  @return void
      */

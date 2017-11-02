@@ -10,14 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{name}", name="homepage")
+     * @Route("/", name="homepage")
      * @Method({"GET"})
      */
-    public function indexAction($name)
+    public function indexAction()
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            "name" => $name
-        ]);
+        return $this->redirectToRoute("article_index");
     }
 }

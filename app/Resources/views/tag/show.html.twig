@@ -1,0 +1,8 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h1>{{ tag.name }}</h1>
+<section>
+    <a href="{{ path("tag_update", {slug: tag.slug}) }}">Update</a>
+    <a href="{{ path("tag_delete", {slug: tag.slug, token: csrf_token("delete")}) }}">Delete</a>
+</section>
+{% endblock body %}

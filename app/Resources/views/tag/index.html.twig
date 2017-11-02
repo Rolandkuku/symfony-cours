@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<ul>
+    {% for tag in tags %}
+        <li>
+            <p>
+                {{ tag.name }}
+            </p>
+            <a href="{{ path("tag_show", {slug: tag.slug}) }}">Show</a>
+            <a href="{{ path("tag_update", {slug: tag.slug}) }}">Update</a>
+            <a href="{{ path("tag_delete", {slug: tag.slug, token: csrf_token("delete")}) }}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{{ path("tag_create") }}">Create</a>
+{% endblock %}
