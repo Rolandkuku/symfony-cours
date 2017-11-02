@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
 * @ORM\Entity
@@ -12,7 +13,9 @@ class Article
 {
 
     public function __construct() {
+        $this->updatedAt = new \DateTime();
         $this->createdAt = new \DateTime();
+        $this->removed = false;
     }
 
     /**
@@ -26,6 +29,22 @@ class Article
 
     /**
      * @var string
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $slug;
+
+    /**
+     * Get the value of slug
+     * @return string slug
+     */
+    public function getSlug() {
+        return $this->slug;
+    }
+
+    /**
+     * @var string
     *
     * @ORM\Column(name="title", type="string")
     */
@@ -36,8 +55,15 @@ class Article
     * 
     * @ORM\Column(name="createdAt", type="datetime")
     */
-
     private $createdAt;
+
+    /**
+     * @var DateTime
+    * 
+    * @ORM\Column(type="datetime")
+    * @Gedmo\Timestampable(on="update")
+    */
+    private $updatedAt;
 
     /**
      * @var string
@@ -45,6 +71,32 @@ class Article
     * @ORM\Column(name="content", type="text")
     */
     private $content;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="removed", type="boolean")
+     */
+    private $removed;
+
+    /**
+     * Get the value of removed
+     * @return boolean
+     */
+    public function getRemoved() {
+        return $this->removed;
+    }
+
+    /**
+     * Set the value of removed
+     * @param boolean removed
+     * @return self
+     */
+    public function setRemoved($removed) {
+        $this->removed = $removed;
+
+        return $this;
+    }
+
 
     /**
      * Get the value of Id

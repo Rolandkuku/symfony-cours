@@ -46,7 +46,7 @@ class ArticleController extends Controller
 
             $this->addFlash(`success`, `L'article {$article->getTitle()} a été créé!`);
 
-            return $this->redirectToRoute('article_show', ["id" => $article->getId()]);
+            return $this->redirectToRoute('article_show', ["slug" => $article->getSlug()]);
         }
 
         return $this->render('article/create.html.twig', [
@@ -57,7 +57,7 @@ class ArticleController extends Controller
 
      /**
      *  Updates an article
-     *  @Route("/{id}/update", name="article_update")
+     *  @Route("/{slug}/update", name="article_update")
      *  @Method({"GET", "POST"})
      *  @return void
      */
@@ -74,7 +74,7 @@ class ArticleController extends Controller
 
             $this->addFlash(`success`, `L'article {$article->getTitle()} a été modifié !`);
 
-            return $this->redirectToRoute('article_show', ["id" => $article->getId()]);
+            return $this->redirectToRoute('article_show', ["slug" => $article->getSlug()]);
         }
 
         return $this->render('article/create.html.twig', [
@@ -85,7 +85,7 @@ class ArticleController extends Controller
 
     /**
      * Shows an article
-     * @Route("/{id}", name="article_show")
+     * @Route("/{slug}", name="article_show")
      * @Method({"GET"})
      * @param Article $article
      * @return response
@@ -101,7 +101,7 @@ class ArticleController extends Controller
 
     /**
      * Deletes an article
-     * @Route("/delete/{id}/token", name="article_delete")
+     * @Route("/delete/{slug}/token", name="article_delete")
      * @Method({"GET"})
      * @param Request $request
      * @param Article $article

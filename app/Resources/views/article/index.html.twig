@@ -7,9 +7,9 @@
             <p>
                 {{ article.title }}
             </p>
-            <a href="{{ path("article_show", {id: article.id}) }}">Show</a>
-            <a href="{{ path("article_update", {id: article.id}) }}">Update</a>
-            <a href="{{ path("article_delete", {id: article.id, token: csrf_token("delete")}) }}">Delete</a>
+            <a href="{{ path("article_show", {slug: article.slug}) }}">Show</a>
+            <a href="{{ path("article_update", {slug: article.slug}) }}">Update</a>
+            <a href="{{ path("article_delete", {slug: article.slug, token: csrf_token("delete")}) }}">Delete</a>
         </li>
     {% endfor %}
 </ul>
