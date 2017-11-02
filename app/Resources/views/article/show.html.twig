@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h1>{{ article.title }}</h1>
+<section>
+    <p>
+        {{ article.content }}
+    </p>
+    <a href="{{ path("article_update", {id: article.id}) }}">Update</a>
+    <a href="{{ path("article_delete", {id: article.id, token: csrf_token("delete")}) }}">Delete</a>
+</section>
+{% endblock body %}

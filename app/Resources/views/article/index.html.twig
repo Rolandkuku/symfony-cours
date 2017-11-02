@@ -1,7 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>
-        You are seeing index article page
-    </h1>
+<ul>
+    {% for article in articles %}
+        <li>
+            <p>
+                {{ article.title }}
+            </p>
+            <a href="{{ path("article_show", {id: article.id}) }}">Show</a>
+            <a href="{{ path("article_update", {id: article.id}) }}">Update</a>
+            <a href="{{ path("article_delete", {id: article.id, token: csrf_token("delete")}) }}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{{ path("article_create") }}">Create</a>
 {% endblock %}
