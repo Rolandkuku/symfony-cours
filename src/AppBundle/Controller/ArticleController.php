@@ -40,21 +40,21 @@ class ArticleController extends Controller
     public function createAction(Request $request) {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
+        $em = $this->getDoctrine()->getManager();
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
 
             $this->addFlash(`success`, `L'article {$article->getTitle()} a été créé!`);
 
-            return $this->redirectToRoute('article_show', ["slug" => $article->getSlug()]);
+            return $this->redirectToRoute("article_show", ["slug" => $article->getSlug()]);
         }
 
-        return $this->render('article/create.html.twig', [
-            'article' => $article,
-            'form' => $form->createView()
+        return $this->render("article/create.html.twig", [
+            "article" => $article,
+            "form" => $form->createView()
         ]);
     }
 

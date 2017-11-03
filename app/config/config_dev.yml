@@ -39,3 +39,12 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+
+bazinga_faker:
+    orm: doctrine
+    entities:
+        AppBundle\Entity\Article:
+            number: 10
+        AppBundle\Entity\Tag:
+            number: 15
+
