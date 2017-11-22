@@ -30,6 +30,30 @@ class Article
     private $id;
 
     /**
+     * @ORM\Column(name="published", type="boolean", options={"default": true})
+     */
+    private $published;
+
+    /**
+     * @return mixed
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param mixed $published
+     * @return $this
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
+    }
+
+
+    /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"})
      */
     private $tags;

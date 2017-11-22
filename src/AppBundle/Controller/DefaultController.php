@@ -13,7 +13,7 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      * @Method({"GET"})
      */
-    public function indexAction()
+    public function indexAction(\Swift_Mailer $mailer)
     {
         // replace this example code with whatever you need
         return $this->redirectToRoute("article_index");

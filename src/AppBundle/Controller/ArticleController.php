@@ -18,7 +18,7 @@ class ArticleController extends Controller
     /**
      * @Route("/", name="article_index")
      * @Method({"GET"})
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -35,7 +35,7 @@ class ArticleController extends Controller
      *  Creates an article
      *  @Route("/create", name="article_create")
      *  @Method({"GET", "POST"})
-     *  @return void
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function createAction(Request $request) {
         $article = new Article();
