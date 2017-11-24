@@ -7,11 +7,7 @@
             <p>
                 {{ article.title }}
             </p>
-            <ul>
-                {% for tag in article.tags %}
-                    <li>{{ tag.name }}</li>
-                {% endfor %}
-            </ul>
+            <p><code>{{ getAllTags(article) }}</code></p>
             <a href="{{ path("article_show", {slug: article.slug}) }}">Show</a>
             <a href="{{ path("article_update", {slug: article.slug}) }}">Update</a>
             <a href="{{ path("article_delete", {slug: article.slug, token: csrf_token("delete")}) }}">Delete</a>

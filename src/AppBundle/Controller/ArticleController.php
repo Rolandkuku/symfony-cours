@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Service\ArticleManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -123,4 +124,20 @@ class ArticleController extends Controller
 
         return $this->redirectToRoute("article_index");
     }
+
+    /**
+     * Publish an article.
+     * @param Article $article
+     * @param ArticleManager $articleManager
+     * @Route("/{slug}/publish", name="article_publish")
+     * @Method("POST")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function publish(Article $article, ArticleManager $articleManager) {
+        $articleManager->publish($article);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute("article_show", ["slug" => $article->getSlug()]);
+    }
+
+
 }

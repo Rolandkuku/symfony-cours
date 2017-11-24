@@ -37,7 +37,7 @@ class Article
     /**
      * @return mixed
      */
-    public function getPublished()
+    public function isPublished()
     {
         return $this->published;
     }
@@ -60,7 +60,7 @@ class Article
 
     /**
      * Get the value of tags
-     * @return array
+     * @return ArrayCollection
      */
     public function getTags() {
         return $this->tags;
